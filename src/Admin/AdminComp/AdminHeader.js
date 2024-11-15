@@ -1,7 +1,9 @@
 import React, { useState } from 'react'
-import { Link } from 'react-router-dom'
+import { useEffect } from 'react';
+import { Link, useNavigate } from 'react-router-dom'
 
 const AdminHeader = () => {
+    var navigate=useNavigate()
 const[toggle,settoggle]=useState(false)
 const[activeIndex,setActiveIndex]=useState(null);
 const toggleAccordion = (index) => {
@@ -11,6 +13,16 @@ const toggleAccordion = (index) => {
     setActiveIndex(index); // Open the clicked accordion
   }
 };
+
+useEffect(function(){
+    var Users=JSON.parse(localStorage.getItem("Users"))
+    if(!Users) return navigate("/")
+},[])
+function Logout(){
+    localStorage.clear()
+    window.history.replaceState(null,null,'/Login')
+       navigate("/",{replace:true})
+}
   return (
     <div>
         <div className="navbar-area header-one" id="navbar">
@@ -39,9 +51,9 @@ const toggleAccordion = (index) => {
                                         <Link to={'/MyAccount'} className="nav-link">My Account</Link>
                                     </li>
                                     <li className="nav-item">
-                                        <Link to={'/'} className="nav-link">
+                                        <a onClick={Logout}  className="nav-link">
                                             Logout
-                                        </Link>
+                                        </a>
                                     </li>
                                 </ul>
                                 <div className="others-option d-flex align-items-center"></div>
@@ -71,9 +83,9 @@ const toggleAccordion = (index) => {
                                 <Link to={'/MyAccount'}><button className="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">My Account</button></Link>
                             </div>
                             <div className="accordion-item">
-                                <Link to={'/'} className="accordion-link">
+                                <a onClick={Logout} className="accordion-link">
                                 <button className="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">Logout</button>
-                                </Link>
+                                </a>
                             </div>
                         </div>
                     </div>

@@ -38,6 +38,7 @@ const Signup = () => {
         else return alert("Account Created Successfully")
       })
     } catch (error) {
+      console.log(error)
       return alert("Account related to this Email is already exist.")
     } finally {
       setbtndisable(false)
@@ -64,16 +65,16 @@ const Signup = () => {
           </div>
           <form >
             <div className="form-group">
-              <input name='Name' onChange={nameset} type="text" placeholder="Full Name" />
+              <input value={obj.Name?obj.Name:""} name='Name' onChange={nameset} type="text" placeholder="Full Name" />
             </div>
             <div className="form-group">
-              <input name='Email' onChange={set} type="email" placeholder="Email Address" />
+              <input value={obj.Email?obj.Email:""} name='Email' onChange={set} type="email" placeholder="Email Address" />
             </div>
             <div className="form-group">
-              <input name='Password' onChange={set} type="password" placeholder="Password" />
+              <input value={obj.Password?obj.Password:""} name='Password' onChange={set} type="password" placeholder="Password" />
             </div>
             <div className="form-group">
-              <input name='ConfPassword' onChange={set} type="password" placeholder="Confirm Password" />
+              <input value={obj.ConfPassword?obj.ConfPassword:""} name='ConfPassword' onChange={set} type="password" placeholder="Confirm Password" />
             </div>
             <button disabled={btndisable} onClick={save} type="submit" className="btn-two w-100 d-block">Create Account</button>
             <p className="login-text">Already have an account?<Link to={'/Login'}>Login</Link></p>

@@ -24,7 +24,7 @@ async function login(e){
    const result=await auth.signInWithEmailAndPassword(obj.Email,obj.Password)
    localStorage.setItem("Users",JSON.stringify(result.user.uid))
    setobj({})
-   navigate("/Blogs")
+   navigate("/AddBlog")
   } catch (error) {
     return alert("Invalid Credentials")
   } finally{
@@ -52,10 +52,10 @@ async function login(e){
                         </div>
                         <form action="#">
                             <div className="form-group">
-                                <input onChange={set} type="email" name='Email' placeholder="Enter Email" />
+                                <input value={obj.Email?obj.Email:""} onChange={set} type="email" name='Email' placeholder="Enter Email" />
                             </div>
                             <div className="form-group">
-                                <input  onChange={set} type="number" name='Password' placeholder="Enter Password" />
+                                <input value={obj.Password?obj.Password:""}  onChange={set} type="number" name='Password' placeholder="Enter Password" />
                             </div>
                             <div className="row">
                                 <div className="col-6">
