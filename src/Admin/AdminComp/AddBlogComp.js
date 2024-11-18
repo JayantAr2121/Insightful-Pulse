@@ -1,5 +1,6 @@
 import React, { useRef, useState } from 'react'
 import Fire from '../../Fire'
+import { storage } from '../../Fire'
 import { useNavigate } from 'react-router-dom'
 const AddBlogComp = () => {
     var navigate=useNavigate()
@@ -21,7 +22,7 @@ const AddBlogComp = () => {
         setinputs([...inputs])
     }
     const set = (e) => {
-        setObj({ ...Obj, [e.target.name]: e.target.value })
+        setObj({ ...Obj, [e.target.name]: e.target.value,"Date":Date.now() })
     }
     const radioCheck = (event) => {
         setObj({ ...Obj, "Status": event.target.id });
@@ -93,8 +94,28 @@ const AddBlogComp = () => {
                 window.history.replaceState(null,null,"/Login")
                 return navigate("/",{replace:true})
             }
-            let mydata={...Obj,"HeadingImage":headingimage,"SubHeadingsData":inputs,"MultipleImages":images}
-            console.log(mydata)
+            
+            const fileRef= storage.child(`jayant${headingimage.name}`)
+            await fileRef.put(headingimage)
+            const url=await fileRef.getDownloadURL()
+            const path=fileRef.fullPath
+            const headobj={url,path}
+            let mydata={...Obj,"HeadingImage":headobj,"SubHeadingsData":inputs}
+            
+            if(images.length>0){
+                let array=[]
+                for(let j=0;j<images.length;j++){
+                    // console.log(images[j].name)
+                    // console.log()
+                    const fileRefs= storage.child(`jayant${images[j].name}`)
+                    await fileRefs.put(images[j])
+                    const urls= await fileRefs.getDownloadURL()
+                    const paths=fileRefs.fullPath 
+                    array.push({urls,paths}) 
+                }
+                mydata={...mydata,"Images":array}
+            }
+            
             Fire.child("Blogs").child(user).push(mydata,err=>{
                 if(err) return alert("Something went wrong. Try again later")
                 else return alert("Blog Uploaded")
