@@ -28,6 +28,7 @@ async function login(e){
   } catch (error) {
     return alert("Invalid Credentials")
   } finally{
+    setobj({})
     setbtndisable(false)
   }
 }
@@ -55,7 +56,7 @@ async function login(e){
                                 <input value={obj.Email?obj.Email:""} onChange={set} type="email" name='Email' placeholder="Enter Email" />
                             </div>
                             <div className="form-group">
-                                <input value={obj.Password?obj.Password:""}  onChange={set} type="number" name='Password' placeholder="Enter Password" />
+                                <input value={obj.Password?obj.Password:""}  onChange={set} type="password" name='Password' placeholder="Enter Password" />
                             </div>
                             <div className="row">
                                 <div className="col-6">
@@ -71,7 +72,7 @@ async function login(e){
                                 </div>
                             </div>
                             <button onClick={login} disabled={btndisable} type="submit" className="btn-two w-100 d-block">Login</button>
-                            <p className="login-text">Don't have an account?<a href="signup.html">Sign Up</a></p>
+                            <p className="login-text">Don't have an account?<Link to={'/Signup'} >Sign Up</Link></p>
                         </form>
                     </div>
                 </div>

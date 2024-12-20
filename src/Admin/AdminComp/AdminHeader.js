@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import { useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom'
 
-const AdminHeader = () => {
+const AdminHeader = (props) => {
     var navigate=useNavigate()
 const[toggle,settoggle]=useState(false)
 const[activeIndex,setActiveIndex]=useState(null);
@@ -42,13 +42,13 @@ function Logout(){
                             <div className="collapse navbar-collapse">
                                 <ul className="navbar-nav mx-auto">
                                     <li className="nav-item">
-                                        <Link to={'/Blogs'} className="nav-link active">Our Blogs</Link>
+                                        <Link to={'/Blogs'} className={props.Blog?"nav-link active":"nav-link"}>Our Blogs</Link>
                                     </li>
                                     <li className="nav-item">
-                                        <Link to={'/AddBlog'} className="nav-link">Add Blog</Link>
+                                        <Link to={'/AddBlog'} className={props.AddBlog?"nav-link active":"nav-link"}>Add Blog</Link>
                                     </li>
                                     <li className="nav-item">
-                                        <Link to={'/MyAccount'} className="nav-link">My Account</Link>
+                                        <Link to={'/MyAccount'} className={props.MyAccount?"nav-link active":"nav-link"}>My Account</Link>
                                     </li>
                                     <li className="nav-item">
                                         <a onClick={Logout}  className="nav-link">

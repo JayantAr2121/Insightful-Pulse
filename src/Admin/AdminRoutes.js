@@ -4,8 +4,10 @@ import AdminContext from './Context/AdminContext'
 import Fire from '../Fire'
 const AdminRoutes = () => {
     const[data,setdata]=useState(null)
+    const[loader,setloader]=useState(false)
     const navigate=useNavigate()
     useEffect(function (){
+      setloader(true)
         const user=JSON.parse(localStorage.getItem("Users"))
         if(!user){
             alert("Unauthorised user")
@@ -16,11 +18,12 @@ const AdminRoutes = () => {
             if(snap.val())  setdata(snap.val())
             else setdata(null)
           })
+          setloader(false)
     },[])
 
   return (
     <div>
-        <AdminContext.Provider  value={{"fetchdata":data}} >
+        <AdminContext.Provider  value={{"fetchdata":data,"loader":loader}} >
         <Outlet/>
         </AdminContext.Provider>
     </div>

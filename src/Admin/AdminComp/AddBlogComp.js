@@ -131,7 +131,6 @@ const AddBlogComp = () => {
             setbtndisable(false)
             setloader(false) 
         }
-        
     }
     return (
         <div>

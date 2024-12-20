@@ -4,9 +4,9 @@ import AdminHeader from '../AdminComp/AdminHeader'
 import AdminFooter from '../AdminComp/AdminFooter'
 
 const AddBlog = () => {
-  return (
+  return ( 
     <div>
-        <AdminHeader/>
+        <AdminHeader AddBlog={"active"} />
         <AddBlogComp/>
         <AdminFooter/>
     </div>

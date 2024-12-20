@@ -33,6 +33,7 @@ const Signup = () => {
       const result = await auth.createUserWithEmailAndPassword(obj.Email, obj.Password)
       setobj({})
       console.log(result.user.uid)
+      console.log(mainobj)
       Fire.child("Users").child(result.user.uid).set(mainobj, err => {
         if (err) return alert("Something Went Wrong. Try Again later.")
         else return alert("Account Created Successfully")

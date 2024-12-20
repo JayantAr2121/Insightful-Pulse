@@ -4,9 +4,9 @@ import AdminFooter from '../AdminComp/AdminFooter'
 import MyAccountcomp from '../AdminComp/MyAccountcomp'
 
 const MyAccount = () => {
-  return (
+  return ( 
     <div>
-      <AdminHeader/>
+      <AdminHeader MyAccount={"active"} />
       <MyAccountcomp/>
       <AdminFooter/>
     </div>
