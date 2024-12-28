@@ -1,9 +1,10 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
-
+import Fire, {storage} from '../../Fire'
 const BlogComponent = (props) => {
   const navigate = useNavigate()
-  console.log(props.data)
+  const[btndisable,setbtndisable]=useState(false)
+  const[loader,setloader]=useState(false) 
   function getDate(date) {
     if (!date) return '----'
     const d = new Date(date)
@@ -16,8 +17,38 @@ const BlogComponent = (props) => {
     localStorage.setItem("CurrentBlog", JSON.stringify(key))
     navigate("/AdminBlogDetail")
   }
+async  function Delete(key){
+    try{
+      setbtndisable(true)
+      setloader(true)
+      const User=JSON.parse(localStorage.getItem("Users"))
+      if(!User) return alert("Unauthorized User")
+      if(props?.data[key]?.Images){
+          for(let i=0;i<props?.data[key]?.Images.length;i++){
+            await storage.child(props.data[key].Images[i].paths).delete()        
+          }      
+        }
+      await storage.child(props?.data[key]?.HeadingImage.path).delete()
+      Fire.child(`Blogs/${User}/${key}`).remove(err=>{
+        if(err) return alert("Something went wrong. Try again later")
+        else return alert("Deleted Successfully")
+      })
+    }
+    catch(error)
+    {
+      return alert("Something went wrong. Try again later")
+    }finally{
+      setbtndisable(false)
+      setloader(false)
+    }
+  }
   return (
     <div className="sports-wrap ptb-100">
+      {
+      loader && <div className="preloaders">
+        <div className="loaders"></div>
+      </div>
+    }
       <div className="container">
         <div className="row gx-55 gx-5">
           <div className="col-lg-8">
@@ -37,6 +68,7 @@ const BlogComponent = (props) => {
                           <ul className="news-metainfo list-style">
                             <li><i className="fi fi-rr-calendar-minus" /><a >{getDate(props?.data[key]?.Date)}</a></li>
                             <li><i className="fi fi-rr-user" />{props?.data[key]?.Author}</li>
+                            <li><button disabled={btndisable} className='btn btn-danger' onClick={()=>Delete(key)}>Delete</button></li>
                           </ul>
                         </div>
                       </div>

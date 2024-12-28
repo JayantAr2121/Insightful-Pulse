@@ -1,8 +1,10 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 
 const AdminBlogDetailComp = (props) => {
-    console.log(props?.BlogData)
+    const navigate =useNavigate()
+    // console.log(props?.BlogData)
+    console.log(props.fun,"previous",props.previous,"next",props.next)
     function getDate(date) {
         if (!date) return '----'
         const d = new Date(date)
@@ -13,6 +15,11 @@ const AdminBlogDetailComp = (props) => {
         if (!date) return '----'
         const d = new Date(date)
         return (`${d.getHours()}:${d.getMinutes()}:${d.getSeconds()}`)
+    }
+    function openblog(key){
+        localStorage.setItem("CurrentBlog",JSON.stringify(key))
+        navigate("/AdminBlogDetail",{replace:true})
+        props.fun(key)
     }
 
     return (
@@ -63,14 +70,14 @@ const AdminBlogDetailComp = (props) => {
                             </div>
                         </article>
                         <div className="post-pagination">
-                            <a className="prev-post" href="business-details.html">
+                        {props?.previous?<a  onClick={()=>openblog(props?.previous)} className="prev-post" >
                                 <span>PREVIOUS</span>
-                                <h6>The Future Of Business: Predictions And Trends To Watch</h6>
-                            </a>
-                            <a className="next-post" href="business-details.html">
+                                <h6>{props?.allData[props?.previous]?.Title}</h6>
+                            </a>:<a></a>}
+                            {props?.next?<a onClick={()=>openblog(props.next)} className="next-post" >
                                 <span>NEXT</span>
-                                <h6>From Start-up To Scale-up: Navigating Growth In Your Business</h6>
-                            </a>
+                                <h6>{props?.allData[props?.next]?.Title}</h6>
+                            </a>:<a></a>}
                         </div>
                         <h3 className="comment-box-title">3 Comments</h3>
                         <div className="comment-item-wrap">
@@ -218,8 +225,8 @@ const AdminBlogDetailComp = (props) => {
                                 <h3 className="sidebar-widget-title">Recent Posts</h3>
                                 <div className="pp-post-wrap">
                                     {
-                                        (props?.allData && props?.current) ? Object.keys(props.allData).map((key, index) => {
-                                            if (key !== props.current) {
+                                        (props?.allData && props?.current) ? Object.keys(props.allData).reverse().map((key, index) => {
+                                            if (key !== props.current && index<10 ) {
                                                 return (
                                                     <div key={index} className="news-card-one">
                                                         <div className="news-card-img">

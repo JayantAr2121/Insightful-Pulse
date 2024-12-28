@@ -8,26 +8,27 @@ const BlogShow = () => {
   const [category, setcategory] = useState([])
   useEffect(() => {
     if (fetchdata) {
-      let response = Object.keys(fetchdata).map((key) => fetchdata[key].Category)
-      let result = new Set(response)
+      let res = Object.keys(fetchdata).map((key) => fetchdata[key].Category)
+      console.log("res",res)
+      let result = new Set(res)
       const array = [...result]
-
+      
       const resultarray = Object.keys(fetchdata)
       let finalarray = []
       for (let i = 0; i < array.length; i++) {
         let newcate = array[i]
         let count = 0
-        for (let j = 0; j < resultarray.length; j++) {
-          if (fetchdata[resultarray[j]].Category == newcate) {
+        for (let j = 0; j < res.length; j++) {
+          if (res[j] == newcate) {
             count++
-          }
-          const objects = {
-            Category: newcate,
-            Times: count
-          }
-
-          finalarray.push(objects)
+          } 
         }
+        const objects = {
+          Category: newcate,
+          Times: count
+        }
+
+        finalarray.push(objects)
       }
       setcategory(finalarray);
     }

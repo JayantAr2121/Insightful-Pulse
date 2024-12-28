@@ -3,8 +3,9 @@ import React from 'react'
 import {Swiper,SwiperSlide} from 'swiper/react'
 import 'swiper/css'
 import {Autoplay} from 'swiper/modules'
-const HomeInstaSlider = () => {
-  return (
+const HomeInstaSlider = (props) => {
+  console.log(props)
+    return (
     <div>
         <div className="container-fluid pb-50">
         <div className="instagram-slider swiper">
@@ -35,42 +36,19 @@ const HomeInstaSlider = () => {
                 }}
                 modules={[Autoplay]}
             >
-                <SwiperSlide>
-                    <a className="instagram-slide" href="https://www.instagram.com/" target="_blank" rel="noopener noreferrer">
-                        <img src="assets/img/instagram/insta-1.webp" alt="Image" />
-                        <span>@Baxo on Instagram<i className="flaticon-right-arrow" /></span>
-                    </a>
-                </SwiperSlide>
-                <SwiperSlide>
-                    <a className="instagram-slide" href="https://www.instagram.com/" target="_blank" rel="noopener noreferrer">
-                        <img src="assets/img/instagram/insta-2.webp" alt="Image" />
-                        <span>@Baxo on Instagram<i className="flaticon-right-arrow" /></span>
-                    </a>
-                </SwiperSlide>
-                <SwiperSlide>
-                    <a className="instagram-slide" href="https://www.instagram.com/" target="_blank" rel="noopener noreferrer">
-                        <img src="assets/img/instagram/insta-3.webp" alt="Image" />
-                        <span>@Baxo on Instagram<i className="flaticon-right-arrow" /></span>
-                    </a>
-                </SwiperSlide>
-                <SwiperSlide>
-                    <a className="instagram-slide" href="https://www.instagram.com/" target="_blank" rel="noopener noreferrer">
-                        <img src="assets/img/instagram/insta-4.webp" alt="Image" />
-                        <span>@Baxo on Instagram<i className="flaticon-right-arrow" /></span>
-                    </a>
-                </SwiperSlide>
-                <SwiperSlide>
-                    <a className="instagram-slide" href="https://www.instagram.com/" target="_blank" rel="noopener noreferrer">
-                        <img src="assets/img/instagram/insta-5.webp" alt="Image" />
-                        <span>@Baxo on Instagram<i className="flaticon-right-arrow" /></span>
-                    </a>
-                </SwiperSlide>
-                <SwiperSlide>
-                    <a className="instagram-slide" href="https://www.instagram.com/" target="_blank" rel="noopener noreferrer">
-                        <img src="assets/img/instagram/insta-6.webp" alt="Image" />
-                        <span>@Baxo on Instagram<i className="flaticon-right-arrow-1" /></span>
-                    </a>
-                </SwiperSlide>
+ {
+             props?.data && props?.data?.map((obj,index)=>{
+                    return(
+                        <SwiperSlide key={index} >
+                        <a className="instagram-slide" target="_blank" rel="noopener noreferrer">
+                            <img style={{height:"300px",width:"400px"}} src={obj?.urls?obj?.urls:"assets/img/instagram/insta-1.webp"}  alt="Image" />
+                            <span>Read Blog<i className="flaticon-right-arrow" /></span>
+                        </a>
+                    </SwiperSlide>
+                    )
+             })
+             
+}
             </Swiper>
         </div>
                 </div>
