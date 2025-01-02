@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 
 const AdminFooter = () => {
   return (
@@ -12,8 +13,8 @@ const AdminFooter = () => {
                             <div className="col-lg-4 text-center" />
                             <div className="col-lg-4">
                                 <div className="footer-right">
-                                    <button className="subscribe-btn" data-bs-toggle="modal" data-bs-target="#newsletter-popup">Log
-                                        out<i className="flaticon-right-arrow" /></button>
+                                <Link to={'/'} >    <button className="subscribe-btn" data-bs-toggle="modal" data-bs-target="#newsletter-popup">Log
+                                        out<i className="flaticon-right-arrow" /></button></Link>
                                     <p>Get all the latest posts delivered straight to your inbox.</p>
                                 </div>
                             </div>

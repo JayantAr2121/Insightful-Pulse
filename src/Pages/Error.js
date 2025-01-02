@@ -6,9 +6,7 @@ import Errorcomp from '../Components/ErrorComponent/Errorcomp'
 const Error = () => {
   return (
     <div>
-        <Header/>
         <Errorcomp/>
-        <Footer/>
     </div>
   )
 }

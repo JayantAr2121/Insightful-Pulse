@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
-import Firebase, { auth } from "../Fire"
+import { auth } from "../Fire"
 import Fire from '../Fire'
 
 const Signup = () => {

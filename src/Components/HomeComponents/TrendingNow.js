@@ -3,7 +3,7 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import { Navigation, Pagination, Autoplay } from 'swiper/modules';
 import 'swiper/css'
 const TrendingNow = (props) => {
-    console.log(props)
+    console.log("trending Now",props)
     return (
         <div>
             <div className="container-fluid">

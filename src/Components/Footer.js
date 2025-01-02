@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 
 const Footer = () => {
   return (
@@ -7,13 +8,13 @@ const Footer = () => {
                     <div className="footer-wrap">
                         <div className="row align-items-center">
                             <div className="col-lg-4">
-                                <p className="copyright-text">© <span>Insightful Pulse</span> made by <a href="https://codepulse.site/">Code Pulse IT Services</a></p>
+                                <p className="copyright-text">© <span>Insightful Pulse</span></p>
                             </div>
                             <div className="col-lg-4 text-center" />
                             <div className="col-lg-4">
                                 <div className="footer-right">
-                                    <button className="subscribe-btn" data-bs-toggle="modal" data-bs-target="#newsletter-popup">Sign
-                                        in<i className="flaticon-right-arrow" /></button>
+                                  <Link to={'/Login'} > <button className="subscribe-btn" data-bs-toggle="modal" data-bs-target="#newsletter-popup">Sign
+                                        in<i className="flaticon-right-arrow" /></button></Link>
                                     <p>Get all the latest posts delivered straight to your inbox.</p>
                                 </div>
                             </div>

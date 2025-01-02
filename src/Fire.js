@@ -4,23 +4,23 @@ import "firebase/compat/database";
 import "firebase/compat/storage";
 
 const firebaseConfig1 = {
-  apiKey: "AIzaSyCAsDVHGNFpgboBoohExEdttI-m8muMOw4",
-  authDomain: "dbmywork-47005.firebaseapp.com",
-  projectId: "dbmywork-47005",
-  storageBucket: "dbmywork-47005.firebasestorage.app",
-  messagingSenderId: "953150878401",
-  appId: "1:953150878401:web:9ad597221fa1597b089a40",
-  measurementId: "G-4D3Z6K5N2P",
+  apiKey:process.env.REACT_APP_API_KEY,
+  authDomain:process.env.REACT_APP_AUTH_DOMAIN,
+  storageBucket:process.env.REACT_APP_STORAGE_BUCKET,
+  projectId:process.env.REACT_APP_PROJECT_ID,
+  messagingSenderId:process.env.REACT_APP_MESSAGE_SENDER,
+  appId:process.env.REACT_APP_APP_ID,
+  measurementId:process.env.REACT_APP_MEASUREMENT_ID,
 };
-
 const firebaseConfig2 = {
-  apiKey: "AIzaSyA-teYBGhAa7KmYa2IW9wx66VUdmhsqzvI",
-  authDomain: "billing-565b3.firebaseapp.com",
-  databaseURL: "https://billing-565b3-default-rtdb.firebaseio.com",
-  projectId: "billing-565b3",
-  storageBucket: "billing-565b3.appspot.com",
-  messagingSenderId: "1079915732213",
-  appId: "1:1079915732213:web:eea86fe01231d9cba6f9bc",
+  apiKey:process.env.REACT_APP_ANSH_API_KEY,
+  authDomain:process.env.REACT_APP_ANSH_AUTH_DOMAIN,
+  storageBucket:process.env.REACT_APP_ANSH_STORAGE_BUCKET,
+  projectId:process.env.REACT_APP_ANSH_PROJECT_ID,
+  messagingSenderId:process.env.REACT_APP_ANSH_MESSAGE_SENDER,
+  appId:process.env.REACT_APP_ANSH_APP_ID,
+  measurementId:process.env.REACT_APP_ANSH_MEASUREMENT_ID,
+  databaseURL:process.env.REACT_APP_ANSH_DATABASE_ID,
 };
 
 const app1 = firebase.initializeApp(firebaseConfig1, "App1");
